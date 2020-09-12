@@ -1,0 +1,55 @@
+Grading at 09/11/2019:03:26:50.453799
+For commit ID 19ad6477851db2d59806688a39dfc4fe1b152b8b
+Grading at Tue Sep 10 23:26:49 EDT 2019
+**Testing broken implementation 10 **
+-------------------------------------
+
+Something wrong with run_check (2,2,4)
+**Testing broken implementation 11 **
+-------------------------------------
+
+Something wrong with run_check (10000000,1,10000000)
+**Testing broken implementation 1 **
+-------------------------------------
+
+Something wrong with run_check (10000000,1,10000000)
+**Testing broken implementation 2 **
+-------------------------------------
+
+Something wrong with run_check (1,0,1)
+**Testing broken implementation 3 **
+-------------------------------------
+
+Something wrong with run_check (0,0,1)
+**Testing broken implementation 4 **
+-------------------------------------
+
+Something wrong with run_check (10000000,1,10000000)
+**Testing broken implementation 5 **
+-------------------------------------
+
+Something wrong with run_check (1,100000,1)
+**Testing broken implementation 6 **
+-------------------------------------
+
+Something wrong with run_check (1,100000,1)
+**Testing broken implementation 7 **
+-------------------------------------
+
+Something wrong with run_check (1,100000,1)
+**Testing broken implementation 8 **
+-------------------------------------
+
+Something wrong with run_check (1,100000,1)
+**Testing broken implementation 9 **
+-------------------------------------
+
+Something wrong with run_check (1,100000,1)
+**Testing correct implementation **
+-------------------------------------
+
+
+All tests were ok.
+
+
+Overall Grade: PASSED

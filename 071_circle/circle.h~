@@ -1,0 +1,7 @@
+#include "point.cpp"
+
+class Circle {
+ private:
+  Point center;
+  const double radius;
+};

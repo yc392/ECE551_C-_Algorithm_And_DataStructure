@@ -1,0 +1,185 @@
+
+Instructions:
+
+(1) My program executes based on the commands read from the standard input.
+(2) You can input legal commands by yourself or copy my test cases as input, then press “Enter” to continue defining or get the results.
+(3) Makefile is provided, and you can input “make” to compile.
+(4) For exit, press “control” + ”D” on the keyboard.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Testcases start from here
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**********************
+Testcases for Step 1 *					
+**********************
+(1)Basic operator
+  	Run ./numerics < define (f x) = 1.23
+	    	       < define (g a) = 100
+
+Addition:
+					< test (+ (f 1) (f 1)) 2.46	
+    You will see that it prints (+ (f 1) (f 1)) = 2.46 [correct], which is correct because 1.23 +1.23 = 2.46
+Subtraction:
+					< test (- (g 3.2) (f 1.5)) 2.46
+	You will see that it prints (- (g 3.2) (f 1.5)) = 98.77 [INCORRECT: expected 2.46], which is correct because 100 - 1.23 = 98.77, not equals to 2.46
+Multiply:
+					< test (* (f 1) (g 1)) 123
+	You will see that it prints (* (f 1) (g 1)) = 123 [correct], which is correct because 100 * 1.23 = 123
+Division:
+					< test (/ (f 1) (g 1)) 0.123
+	You will see that it prints (/ (f 1) (g 1)) = 0.0123 [INCORRECT: expected 0.123], which is correct because 1.23/100 = 0.0123, not equals to 0.123
+Mod:
+					< test (% (g 1) (f 1)) 0.37
+	You will see that it prints (% (g 1) (f 1)) = 0.37 [correct], which is correct because 100 % 1.23 = 0.37 based on the function fmod()
+					< test (% (f 1) (g 1)) 0.37
+	You will see that it prints (% (f 1) (g 1)) = 1.23 [INCORRECT: expected 0.37], which is correct because 1.23 % 100 = 1.23 based on the function fmod() rather than 0.37
+Power:
+					< test (^ (f 1) 2) 1.5129
+	You will see that it prints (^ (f 1) 2) = 1.5129 [correct], which is correct because 1.23^2 = 1.5129
+Floor:
+					< test (floor 1.999) 1
+	You will see that it prints (floor 1.999) = 1 [correct], which is correct because (floor 1.999) = 1
+					< test (floor (f 123)) 1
+	You will see that it prints (floor (f 123)) = 1 [correct], which is correct because (f 123) = 1.23 and (floor 1.23 = 1)
+Ceil:
+					< test (ceil 1.999) 2
+	You will see that it prints (ceil 1.999) = 2 [correct], which is correct because (ceil 1.999) = 2
+Round:
+					< test (round 1.499) 1
+	You will see that it prints (round 1.499) = 1 [correct], which is correct because (round 1.499) = 1
+					< test (round 1.5001) 1
+	You will see that it prints (round 1.5001) = 2 [INCORRECT: expected 1], which is correct because (round 1.5001) = 2 rather than 1
+logb:
+					< test (logb 16 2) 4
+	You will see that it prints (logb 16 2) = 4 [correct], which is correct because the log (base 2) of 16 is 4.
+					< test (logb 16 4) 4
+	You will see that it prints (logb 16 4) = 2 [INCORRECT: expected 4], which is correct because the log (base 4) of 16 is 2 rather than 4.
+					< test (logb 1 16) 0 
+	You will see that it prints (logb 1 16) = 0 [correct], which is correct because the log (base 16) of 1 is 0. You can change any base as you want.
+
+(2)Simple function definition
+		Run ./numerics < define (f x y z) = (+ (* x y) (- z 3))
+		
+						< test (f 3 4.2 5)  14.6
+	You will see that it prints (f 3 4.2 5) = 14.6 [correct], which is correct because 3 * 4.2 + (5-3) = 14.6
+						< test (f -1 9.2 6) -6.2 
+	You will see that it prints (f -1 9.2 6) = -6.2 [correct], which is correct because -1 * 9.2 + (6-3) = -6.2
+						< test ( f             3       4  5    ) 0
+	You will see that it prints ( f             3       4  5    ) = 14 [INCORRECT: expected 0], which is correct because 3 * 4 + (5-3) = 14 rather than 0, space does not matter
+						
+						< define (fx yz) = yz
+						< test (f 3 4 5) (fx 0)
+	You will see that it prints (f 3 4 5) = 14 [INCORRECT: expected 0], which is correct because they are different function
+						
+						< define (g a) = a
+						< test (g 12.3) 12.3
+	You will see that it prints (g 12.3) = 12.3 [correct], which is correct because g(12.3) = 12.3 (single variable, no ())
+						
+						< define (F a) = 1.222
+						< test (F 12.2) 1.222
+	You will see that it prints (F 12.2) = 1.222 [correct], which is correct because whatever the value of variable is, it is always 1.222
+
+(3) Test Command with two argument
+		Run ./numerics < define (f x y z) = (+ (* x y) (- z 3))
+					  < define (g a b) = (logb a b)
+						
+						< test (f 1 2 3) (g 100 10)
+	You will see that it prints (f 1 2 3) = 2 [correct], which is correct because both functions evaluate to 2
+
+(4) Complicated function definition
+    using functions to define functions:
+
+		Run ./numerics < define(g a b) = (+ a b )
+					  < define (f x y) = (g x y)
+
+						< test (f 1 2 ) 3
+	You will see that it prints (f 1 2 ) = 3 [correct], which is correct because f(1 2) = g(1 2) = 1+2=3
+
+		Run ./numerics < define(g a b) = (+ a b )
+				< define(h q w) = (* q w )
+				< define(L m n) = (logb m n)
+				< define (f x y) = (L (g x y) (h x y))
+				< define(P Q W) = (f Q W )
+
+						< test (P 2 2) 1 
+	You will see that it prints (P 2 2) = 1 [correct], which is correct by recursive function define, log(2+2 2*2) = 1
+	As you can see, you can also define function by using build-in function in this example.
+
+(5) Complicated test
+
+		Run ./numerics < define(g1 a b) = (+ a b )
+					  < define (g2 x y) = (- x y)	
+					  < define (h x y) = (/ x y)
+					  < define (f x y z) = (+ (* x y) (- z 3))
+
+					  < test (f (g1 1 2) (g2 3 4) (h 6 3))  99.87
+	You will see that it prints (f (g1 1 2) (g2 3 4) (h 6 3)) = -4 [INCORRECT: expected 99.87], which is correct (f (g1 1 2) (g2 3 4) (h 6 3)) = f((1+2) (3-4) (6/3)) = f(3 -1 2) = (-3 + (-1)) = -4
+
+
+
+
+*********************
+Testcases for Step 2*
+*********************
+Function has one argument:
+		Run ./numerics < define (f x) = (* 3 x)
+
+						< numint f 0.01 0 5 
+		You will see that it prints The result is: 37.5, which is correct because the integration of 3x from 0 to 5 is 37.5
+						< numint f 0.01 -5 5
+		You will see that it prints The result is: -3.64153e-15, which is correct because it is a very small number, nearly equals to 0
+
+Function has two arguments: (the example given)
+		Run ./numerics < define (f x y) = (+ (* 2 x) y)
+
+						< numint f 0.01 -1 1 4 5
+		You will see that it prints The result is: 8.9351, which is correct because the integration result is nearly equals to 9
+						< numint f 0.005 -1 1 4 5
+		You will see that it prints The result is: 8.96753, which is correct because the integration result is more near to 9
+		Because of the efficiency of the algorithm, the runtime is very long when stepsize is too small
+
+Function has three arguments:
+		Run ./numerics < define (f x y z) = (+ (* x y) z)
+						
+						< numint f 0.025 0 1 1 2 2 3
+		You will see that it prints The result is: 3.15047, which is correct because I prove it by checking step 3’s result.
+
+You can define functions and test integration by taking any number of arguments, as long as they can match.
+
+
+*********************
+Testcases for Step 3*
+*********************
+Quite similar with step 2
+		Run ./numerics < define (f x) = (* 3 x)
+
+		    	       	 	      	< mcint f 100 0 5
+		You will see that it prints The result is: 37.1273, which is correct because near to 37.5
+						< mcint f 10000 0 5
+		You will see that it prints The result is: 37.5896, which is correct because more trials, more near to correct answer 37.5
+		
+		Run ./numerics < define (g a b) = (+ (* 2 a) b)
+						< mcint g 10000 -1 1 4 5
+		You will see that it prints The result is: 8.99622, which is correct because quite near to the result by using step 2
+		
+		Run ./numerics < define (f x y z) = (+ (* x y) z)
+    						< mcint f 10000 0 1 1 2 2 3
+		You will see that it prints The result is: 3.26028, which is correct because quite near to the result by using step 2
+
+You can define functions and test MC integration by taking any number of arguments, as long as they can match.
+
+
+*********************
+Testcases for Step 4*
+*********************
+		Run ./numerics < define (f x y) = (+ (^ x 2) (- (^ y 2) (+ (* 4 x) 1)))
+						< min f 0.1 0.0001 3 3 1000
+		You will see that it prints The result point is: (2.002 ,0.002), which is correct because it is Numerically equivalent answers with (2,0).
+						< min f 0.1 0.0001 5.5 6.5 1000
+		You will see that it prints The result point is: (2.002 ,0.002), which is correct because different start point but same result.
+						< min f 0.5 0.0001 3 3 1000
+		You will see that it prints The result point is: (2 ,0), which is correct because stepsize is larger, convergeDistance is more useful.
+						< min f 0.01 0.0001 3 3 1000
+		You will see that it prints The result point is: (2.0042 ,0.0091), which is correct because stepsize is smaller, it will stop earlier.
+						< min f 0.01 0.0001 3 3 10
+		You will see that it prints The result point is: (2.8168 ,2.4511), which is correct because the number of step runs out.

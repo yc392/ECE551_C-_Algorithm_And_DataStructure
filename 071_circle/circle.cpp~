@@ -1,0 +1,49 @@
+#include "circle.h"
+
+#include <cmath>
+#include <cstdio>
+
+#define pi acos(-1.0)
+
+void Circle::move(double dx, double dy) {
+  center.move(dx, dy);
+}
+
+double Circle::intersectionArea(const Circle & otherCircle) {
+  double diff;
+  double d = center.distanceFrom(otherCircle.center);
+  if (d >= radius + otherCircle.radius) {
+    return 0;
+  }
+
+  diff = fabs(radius - otherCircle.radius);
+  if (diff >= d) {
+    return pi * pow(fmin(radius, otherCircle.radius), 2);
+  }
+
+  const double a_pow = pow(radius, 2);
+  const double b_pow = pow(otherCircle.radius, 2);
+  /* Calculate distance */
+  const double mid_distance1 = (a_pow - b_pow + pow(d, 2)) / (2 * d);
+  const double mid_distance2 = d - mid_distance1;
+  const double height = sqrt(pow(radius, 2) - pow(mid_distance1, 2));
+
+  /* Calculate angles */
+  const double alpha =
+      atan2(height, mid_distance1) * (180 / pi) * 2;  // first circle's central angle
+  const double beta = atan2(height, mid_distance2) * (180 / pi) * 2;
+
+  const double len1 = fmod(alpha, 360) * 2 * pi * radius;
+  const double len2 = fmod(beta, 360) * 2 * pi * otherCircle.radius;
+  /* Calculate areas */
+  const double a = mid_distance1 * height;
+  const double b = mid_distance2 * height;
+  /*const double A0 = std::pow(radius, 2) / 2.0 *
+                    (alpha - std::sin(alpha));  // Area of the first circula segment
+  const double A1 = std::pow(otherCircle.radius, 2) / 2.0 *
+                    (beta - std::sin(beta));  // Area of the second circula segment
+  */
+  const double A0 = 0.5 * radius * len1;
+  const double A1 = 0.5 * otherCircle.radius * len2;
+  return A0 + A1 - a - b;
+}

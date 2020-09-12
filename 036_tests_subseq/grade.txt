@@ -1,0 +1,54 @@
+Grading at 09/17/2019:03:07:24.982523
+For commit ID d22e8b6a33b39715f2c35d6227108aaa43d4cec8
+Grading at Mon Sep 16 23:07:24 EDT 2019
+**Testing broken implementation 10 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 11 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 1 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 2 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 3 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 4 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 5 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 6 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 7 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 8 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing broken implementation 9 **
+-------------------------------------
+
+Something wrong with maxSeq
+**Testing correct implementation **
+-------------------------------------
+
+
+All test programs were handled correctly
+
+Overall Grade: PASSED
